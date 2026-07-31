@@ -84,5 +84,3 @@ zoom = Vector2(4, 4)
 [node name="GridLayer" type="TileMapLayer" parent="." unique_id=2104647117]
 tile_set = SubResource("TileSet_mngvc")
 script = ExtResource("2_0xm2m")
-rows = 6
-cols = 6

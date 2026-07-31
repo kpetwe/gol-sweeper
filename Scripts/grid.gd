@@ -38,7 +38,7 @@ const TILE_SET_ID = 1
 @export var GOL_ALIVE = [0, 0, 1, 1, 0, 0, 0, 0, 0]
 @export var gol_on = false
 
-
+@export var view_mines = false
 
 
 # Tracks cells in the game using hashing
@@ -51,6 +51,7 @@ var game_over = false
 
 # initialize scene
 func _ready():
+	assert(mines < rows * cols && mines > 0 && rows > 0 && cols > 0)
 	clear()
 	init_board()
 	init_mines()
@@ -66,6 +67,10 @@ func init_mines():
 	while mine_cells.size() < mines:
 		var cell = Vector2i(randi_range(-rows/2, rows/2-1), randi_range(-cols/2, cols/2-1))
 		mine_cells[cell] = null	
+	if (view_mines):
+		for mine in mine_cells:
+			erase_cell(mine)
+			set_tile_cell(mine, "M")
 	
 # act when grid is clicked
 func _input(event: InputEvent):
@@ -151,37 +156,47 @@ func cell_update(cell: Vector2i):
 	return
 	
 # perform game of life updates on the board grid
+# there is a shorter way to write this function but
+# custom rules require checking the whole board
 func gol_update():
 	var new_mine_cells = {}
 	
-	# Update dead cells
-	for cell in checked_cells:
-		var mc = count_mines(cell)
-		var alive = GOL_DEAD[mc]
-		if(alive):
-			new_mine_cells[cell] = null
-			erase_cell(cell)
-			set_tile_cell(cell, "M")
+	# loops through grid an updates mines
+	for i in rows:
+		for j in cols:
+			var cell = Vector2i(i - rows/2, j-cols/2)
+			var mc = count_mines(cell)
+			var res
+			if mine_cells.has(cell):
+				res = GOL_ALIVE[mc]
+			else:
+				res = GOL_DEAD[mc]
+			if res:
+				new_mine_cells[cell] = null
+					
 	
-	# Update alive cells
-	for cell in mine_cells:
-		var mc = count_mines(cell)
-		var alive = GOL_ALIVE[mc]
-		if (alive):
-			new_mine_cells[cell] = null
+	# View GOL Updates
+	if(view_mines):
+		for mine in new_mine_cells:
+			if(!mine_cells.has(mine)):
+				erase_cell(mine)
+				set_tile_cell(mine, "M")
+		for mine in mine_cells:
+			if(!new_mine_cells.has(mine)):
+				erase_cell(mine)
+				set_tile_cell(mine, "B")
 	
 	mine_cells = new_mine_cells
 	mines = mine_cells.size()
-	print(mines)
 	
-	# update displayed cell
+	# Update visible cells
 	for cell in checked_cells:
-		if !mine_cells.has(cell):
+		erase_cell(cell)
+		if mine_cells.has(cell):
+			set_tile_cell(cell, "M")
+		else:
 			var mc = count_mines(cell)
-			erase_cell(cell)
 			set_tile_cell(cell, "%d" % mc)
-	
-	
 	
 
 # counts the number of mines in the neighborhood
