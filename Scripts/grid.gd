@@ -19,6 +19,9 @@ const CELLS = {
 	"B": Vector2i(2,2)
 }
 
+# source color on sprite map
+const TILE_SET_ID = 1
+
 # Board specs
 @export var rows = 8
 @export var cols = 8
@@ -36,8 +39,7 @@ const CELLS = {
 @export var gol_on = false
 
 
-# make sure stuff prints on the same layer
-const TILE_SET_ID = 0
+
 
 # Tracks cells in the game using hashing
 var flagged_cells = {}
