@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0b2ttrssqrx1"
-path="res://.godot/imported/button_cleared.png-e4420718aff0c9c6b44c06b496526e41.ctex"
+uid="uid://c5js0sogx12r0"
+path="res://.godot/imported/button_smile.png-116b4cef01d09d8fad17ba43f25f4c6b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/button_cleared.png"
-dest_files=["res://.godot/imported/button_cleared.png-e4420718aff0c9c6b44c06b496526e41.ctex"]
+source_file="res://Sprites/button_smile.png"
+dest_files=["res://.godot/imported/button_smile.png-116b4cef01d09d8fad17ba43f25f4c6b.ctex"]
 
 [params]
 

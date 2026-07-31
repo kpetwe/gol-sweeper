@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://edrp8744lm3q"]
 
-[ext_resource type="Texture2D" uid="uid://wnx38dmpi7va" path="res://Assets/tile_atlas.png" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://d0jry4cdfay1y" path="res://grid.gd" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://c50a648g6oh3w" path="res://Sprites/tile_atlas.png" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://d0jry4cdfay1y" path="res://Scripts/grid.gd" id="2_0xm2m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xm2m"]
 texture = ExtResource("1_ig7tw")

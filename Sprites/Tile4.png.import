@@ -2,15 +2,15 @@
 
 importer="texture_atlas"
 type="Texture2D"
-uid="uid://trmoxuiv3lhd"
-path="res://.godot/imported/TileMine.png-f645f31a764ada86ebb65344028b9cfe.res"
+uid="uid://dtkk2ly8it7v2"
+path="res://.godot/imported/Tile4.png-96beb1e8fc1c20bc2eff1be2c4bf4301.res"
 group_file="res://Assets/tile_atlas.png"
 valid=true
 [deps]
 
 
-source_file="res://Assets/TileMine.png"
-dest_files=["res://.godot/imported/TileMine.png-f645f31a764ada86ebb65344028b9cfe.res"]
+source_file="res://Sprites/Tile4.png"
+dest_files=["res://.godot/imported/Tile4.png-96beb1e8fc1c20bc2eff1be2c4bf4301.res"]
 
 [params]
 

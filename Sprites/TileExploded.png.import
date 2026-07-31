@@ -3,14 +3,14 @@
 importer="texture_atlas"
 type="Texture2D"
 uid="uid://b52v45axb6s4q"
-path="res://.godot/imported/TileExploded.png-66cdca72d2d1f585b25382a8d967707f.res"
+path="res://.godot/imported/TileExploded.png-ee80f6d0c7beea31a5747e7880ce05cb.res"
 group_file="res://Assets/tile_atlas.png"
 valid=true
 [deps]
 
 
-source_file="res://Assets/TileExploded.png"
-dest_files=["res://.godot/imported/TileExploded.png-66cdca72d2d1f585b25382a8d967707f.res"]
+source_file="res://Sprites/TileExploded.png"
+dest_files=["res://.godot/imported/TileExploded.png-ee80f6d0c7beea31a5747e7880ce05cb.res"]
 
 [params]
 
