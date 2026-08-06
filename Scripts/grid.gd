@@ -45,7 +45,6 @@ const TILE_SET_ID = 1
 var flagged_cells = {}
 var checked_cells = {}
 var mine_cells = {}
-#var minesleft = mines
 
 var game_over = false
 
@@ -53,10 +52,22 @@ var game_over = false
 	Initializes Scene
 """
 func _ready():
-	assert(mines < rows * cols && mines > 0 && rows > 0 && cols > 0)
+	assert(mines < rows * cols && mines >= 0 && rows > 0 && 
+		cols > 0 && rows <= 30 && cols <= 24 && mines < 667)
 	clear()
 	init_board()
 	init_mines()
+
+func reset():
+	game_over = false
+	flagged_cells = {}
+	checked_cells = {}
+	mine_cells = {}
+	_ready()
+	
+
+func set_gol():
+	gol_on = !gol_on
 
 """
 	Draws a blank board
@@ -71,7 +82,8 @@ func init_board():
 """
 func init_mines():
 	while mine_cells.size() < mines:
-		var cell = Vector2i(randi_range(-rows/2, rows/2-1), randi_range(-cols/2, cols/2-1))
+		var cell = Vector2i(randi_range(-rows/2, rows/2-1), 
+			randi_range(-cols/2, cols/2-1))
 		mine_cells[cell] = null	
 	if (view_mines):
 		for mine in mine_cells:
@@ -109,11 +121,11 @@ func flag_update(cell: Vector2i):
 		erase_cell(cell)
 		set_tile_cell(cell, "B")
 		flagged_cells.erase(cell)
-	elif flagged_cells.size() < mines:
+	elif flagged_cells.size() < mine_cells.size():
 		erase_cell(cell)
 		set_tile_cell(cell, "F")
 		flagged_cells[cell] = null
-	elif flagged_cells.size() >= mines:
+	elif flagged_cells.size() >= mine_cells.size():
 		print("OUT OF FLAGS")	
 
 
@@ -145,7 +157,7 @@ func grid_update(cell: Vector2i, safe: bool):
 	
 	# All safe tiles revealed
 	#TODO: Make variable that decrements to 0
-	if checked_cells.size() >= (rows*cols - mines):
+	if checked_cells.size() >= (rows*cols - mine_cells.size()):
 		print("GAME WON")
 		game_over = true
 		reveal_mines()
@@ -240,7 +252,6 @@ func gol_update():
 				set_tile_cell(mine, "B")
 	
 	mine_cells = new_mine_cells
-	mines = mine_cells.size()
 	
 	# Update visible cells
 	for cell in checked_cells:
@@ -266,7 +277,8 @@ func count_mines(cell: Vector2i):
 	return mc
 
 # Sets tile display
-func set_tile_cell(cell:Vector2i, type): set_cell(cell, TILE_SET_ID, CELLS[type])
+func set_tile_cell(cell:Vector2i, type): 
+	set_cell(cell, TILE_SET_ID, CELLS[type])
 
 # Check if cell is on the grid
 func in_bounds(cell: Vector2i):
@@ -274,3 +286,7 @@ func in_bounds(cell: Vector2i):
 		if (cell.y >= -cols/2 && cell.y <= cols/2 - 1):
 			return true
 	return false
+
+
+func _on_reset_button_pressed() -> void:
+	pass # Replace with function body.

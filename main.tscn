@@ -79,12 +79,67 @@ sources/1 = SubResource("TileSetAtlasSource_h2yge")
 [node name="main" type="Node2D" unique_id=360394113]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1390186764]
-zoom = Vector2(3, 3)
 
 [node name="GridLayer" type="TileMapLayer" parent="." unique_id=2104647117]
 tile_set = SubResource("TileSet_mngvc")
 script = ExtResource("2_0xm2m")
-rows = 30
-cols = 24
-mines = 200
-view_mines = true
+
+[node name="ScreenButtons" type="Node" parent="." unique_id=1313250108]
+
+[node name="MarginContainer" type="MarginContainer" parent="ScreenButtons" unique_id=1758116062]
+offset_left = 290.0
+offset_top = -106.0
+offset_right = 340.0
+offset_bottom = 106.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenButtons/MarginContainer" unique_id=640660265]
+layout_mode = 2
+
+[node name="ResetButton" type="Button" parent="ScreenButtons/MarginContainer/VBoxContainer" unique_id=2068131142]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "R"
+icon_alignment = 1
+
+[node name="GOLButton" type="Button" parent="ScreenButtons/MarginContainer/VBoxContainer" unique_id=663202793]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "G"
+
+[node name="OptionMenuButton" type="Button" parent="ScreenButtons/MarginContainer/VBoxContainer" unique_id=1632477047]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "O"
+
+[node name="HelpButton" type="Button" parent="ScreenButtons/MarginContainer/VBoxContainer" unique_id=770214190]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+text = "H"
+
+[node name="OptionsMenu" type="Node" parent="." unique_id=1092258733]
+
+[node name="MarginContainer" type="MarginContainer" parent="OptionsMenu" unique_id=326507447]
+custom_minimum_size = Vector2(300, 300)
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="OptionsMenu/MarginContainer" unique_id=1828195125]
+visible = false
+layout_mode = 2
+text = "Options:
+
+View Mines:
+
+Board Specs:
+	Rows:
+	Columns:
+	Mines:
+
+Game of Life Settings:
+	Alive:
+	Dead:"
+
+[connection signal="pressed" from="ScreenButtons/MarginContainer/VBoxContainer/ResetButton" to="GridLayer" method="reset"]
+[connection signal="pressed" from="ScreenButtons/MarginContainer/VBoxContainer/GOLButton" to="GridLayer" method="set_gol"]
