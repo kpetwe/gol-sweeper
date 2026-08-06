@@ -49,20 +49,26 @@ var mine_cells = {}
 
 var game_over = false
 
-# initialize scene
+"""
+	Initializes Scene
+"""
 func _ready():
 	assert(mines < rows * cols && mines > 0 && rows > 0 && cols > 0)
 	clear()
 	init_board()
 	init_mines()
 
-# draws a blank board
+"""
+	Draws a blank board
+"""
 func init_board():
 	for i in rows:
 		for j in cols:
 			set_tile_cell(Vector2i(i - rows/2, j-cols/2), "B")
 
-# saves initial mines in a set
+"""
+	Stores addresses of initial mines
+"""
 func init_mines():
 	while mine_cells.size() < mines:
 		var cell = Vector2i(randi_range(-rows/2, rows/2-1), randi_range(-cols/2, cols/2-1))
@@ -72,7 +78,10 @@ func init_mines():
 			erase_cell(mine)
 			set_tile_cell(mine, "M")
 	
-# act when grid is clicked
+"""
+	Handle mouse interaction with screen
+	@param InputEvent event: event to handle
+"""
 func _input(event: InputEvent):
 	# can change to shade darker when hovering perhaps
 	if event is not InputEventMouseButton || !event.pressed:
@@ -85,13 +94,16 @@ func _input(event: InputEvent):
 		return 
 
 	if event.button_index == 1:
-		grid_update(cell)
+		grid_update(cell, true)
 	elif event.button_index == 2:
 		flag_update(cell)
 	
 	print(cell)
 
-# Display flag on board
+"""
+	Updates flag on board
+	@param Vector2i cell: Cell to add or remove a flag from
+"""
 func flag_update(cell: Vector2i):
 	if flagged_cells.has(cell):
 		erase_cell(cell)
@@ -105,22 +117,31 @@ func flag_update(cell: Vector2i):
 		print("OUT OF FLAGS")	
 
 
-# update grid display
-func grid_update(cell: Vector2i):
+"""
+	Updates Grid display
+	@param Vector2i cell: Location of cell that was clicked
+	@param bool safe: True if it's safe to perform GOL update 
+"""
+func grid_update(cell: Vector2i, safe: bool):
 	# Unsafe tile hit
 	if mine_cells.has(cell):
 		print("GAME LOST")
 		game_over = true
 		reveal_mines()
 		set_tile_cell(cell, "RM")
+		return
+	
+	# Reveal neighboring tiles if enough flags placed
+	elif checked_cells.has(cell):
+		safe = neighbor_update(cell)
 	
 	# Safe tile hit
 	elif !checked_cells.has(cell):
 		cell_update(cell)
 		
-		# GAME OF LIFE UPDATE
-		if gol_on:
-			gol_update()
+	# Evolves board at end of move
+	if gol_on && safe:
+		gol_update()
 	
 	# All safe tiles revealed
 	#TODO: Make variable that decrements to 0
@@ -129,13 +150,46 @@ func grid_update(cell: Vector2i):
 		game_over = true
 		reveal_mines()
 		
-# reveal mines at the end of the game
+"""
+	Display location of mines
+"""
 func reveal_mines():
 	for cell in mine_cells:
 		erase_cell(cell)
 		set_tile_cell(cell, "M")
 
-# recursively reveal all neighboring safe tiles
+"""
+	If enough flags have been put down, reveal neighboring
+	tiles.
+	@param Vector2i cell: Location of cell that was clicked
+	@return bool: true if it is safe to perform GOL update
+"""
+func neighbor_update(cell: Vector2i):
+	var mc = count_mines(cell)
+	var fc = 0
+	var safe = false
+	
+	# Check that there's a matching number of flags
+	for i in range(-1, 2):
+		for j in range(-1, 2):
+			if flagged_cells.has(Vector2i(i, j) + cell):
+				fc += 1
+	if mc == fc:
+		# Update hidden cells
+		for i in range(-1, 2):
+			for j in range(-1, 2):
+				var tc = Vector2i(i, j) + cell
+				# prevent infinite loop and revealing a mine tile as "safe"
+				if !checked_cells.has(tc) && !flagged_cells.has(tc):
+					grid_update(tc, false)
+					safe = true
+	return safe
+	
+
+"""
+	Recursively reveals safe tiles
+	@param Vector2i cell: location of cell we're revealing
+"""
 func cell_update(cell: Vector2i):
 	if !in_bounds(cell) || checked_cells.has(cell):
 		return
@@ -153,11 +207,10 @@ func cell_update(cell: Vector2i):
 			for j in range(-1, 2):
 				if (i != 0 || j != 0):
 					cell_update(cell + Vector2i(i, j))
-	return
-	
-# perform game of life updates on the board grid
-# there is a shorter way to write this function but
-# custom rules require checking the whole board
+
+"""
+	Perform game of life updates on the board grid
+"""	
 func gol_update():
 	var new_mine_cells = {}
 	
@@ -199,7 +252,11 @@ func gol_update():
 			set_tile_cell(cell, "%d" % mc)
 	
 
-# counts the number of mines in the neighborhood
+"""
+	Counts the number of neighboring mines
+	@param Vector2i cell: location of cell we're checking
+	@return int: number of mines
+"""
 func count_mines(cell: Vector2i):
 	var mc = 0
 	for i in range(-1, 2):

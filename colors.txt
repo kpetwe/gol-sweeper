@@ -1,0 +1,14 @@
+#242b5c 1blue
+#1d5523 2green
+#831818 3red
+#3e2425 4brown
+#6e3164 6purple
+#634a88 7purple
+#3a3a3a 8grey
+#c9bc95 sand
+#A19675 sand shadow
+#31446e 5blue
+#99414e flagred
+#281b0d bombgrey
+#99424e bombred
+#807a6a default

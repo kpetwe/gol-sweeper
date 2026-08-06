@@ -79,8 +79,12 @@ sources/1 = SubResource("TileSetAtlasSource_h2yge")
 [node name="main" type="Node2D" unique_id=360394113]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1390186764]
-zoom = Vector2(4, 4)
+zoom = Vector2(3, 3)
 
 [node name="GridLayer" type="TileMapLayer" parent="." unique_id=2104647117]
 tile_set = SubResource("TileSet_mngvc")
 script = ExtResource("2_0xm2m")
+rows = 30
+cols = 24
+mines = 200
+view_mines = true
