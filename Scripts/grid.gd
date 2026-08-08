@@ -58,6 +58,10 @@ func _ready():
 	init_board()
 	init_mines()
 
+"""
+	Button Signals
+"""
+
 func reset():
 	game_over = false
 	flagged_cells = {}
@@ -68,6 +72,19 @@ func reset():
 
 func set_gol():
 	gol_on = !gol_on
+	
+func set_view_mines():
+	view_mines = !view_mines
+	reset()
+	
+func set_rows(r):
+	rows = r
+
+func set_cols(c):
+	cols = c
+
+func set_mines(m):
+	mines = m
 
 """
 	Draws a blank board
