@@ -117,6 +117,8 @@ func _input(event: InputEvent):
 	@param Vector2i cell: Cell to add or remove a flag from
 """
 func flag_update(cell: Vector2i):
+	if (checked_cells.has(cell)):
+		return
 	if flagged_cells.has(cell):
 		erase_cell(cell)
 		set_tile_cell(cell, "B")
@@ -156,11 +158,25 @@ func grid_update(cell: Vector2i, safe: bool):
 		gol_update()
 	
 	# All safe tiles revealed
-	#TODO: Make variable that decrements to 0
-	if checked_cells.size() >= (rows*cols - mine_cells.size()):
+	if game_won():
 		print("GAME WON")
 		game_over = true
 		reveal_mines()
+
+"""
+	Check if the game is won
+"""
+func game_won():
+	var safe_tiles = (rows*cols - mine_cells.size())
+	var known_safe = checked_cells.size()
+	if (gol_on):
+		# Prevents game for ending early if a dead cells
+		# comes to life
+		for mine in mine_cells:
+			if checked_cells.has(mine):
+				known_safe -= 1
+	
+	return known_safe >= safe_tiles
 		
 """
 	Display location of mines
@@ -286,7 +302,3 @@ func in_bounds(cell: Vector2i):
 		if (cell.y >= -cols/2 && cell.y <= cols/2 - 1):
 			return true
 	return false
-
-
-func _on_reset_button_pressed() -> void:
-	pass # Replace with function body.

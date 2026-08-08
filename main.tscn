@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://c50a648g6oh3w" path="res://Sprites/tile_atlas.png" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://d0jry4cdfay1y" path="res://Scripts/grid.gd" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://b8ucyd2u6ykig" path="res://Alt_Coloring/color_1_atlas.png" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://c2dd2jkdroxuj" path="res://Scripts/buttons.gd" id="4_1bvp3"]
+[ext_resource type="Theme" uid="uid://b6u67bm1t6pi4" path="res://button_theme_1.tres" id="4_lquwl"]
+[ext_resource type="Theme" uid="uid://2vhcuboqm2ql" path="res://button_theme_2.tres" id="6_7mycd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xm2m"]
 texture = ExtResource("1_ig7tw")
@@ -81,65 +84,288 @@ sources/1 = SubResource("TileSetAtlasSource_h2yge")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1390186764]
 
 [node name="GridLayer" type="TileMapLayer" parent="." unique_id=2104647117]
+position = Vector2(-88, 0)
 tile_set = SubResource("TileSet_mngvc")
 script = ExtResource("2_0xm2m")
 
-[node name="ScreenButtons" type="Node" parent="." unique_id=1313250108]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1984001984]
+z_index = -1
+offset_left = -344.0
+offset_top = -216.0
+offset_right = 168.0
+offset_bottom = 216.0
 
-[node name="MarginContainer" type="MarginContainer" parent="ScreenButtons" unique_id=1758116062]
-offset_left = 290.0
-offset_top = -106.0
-offset_right = 340.0
-offset_bottom = 106.0
+[node name="ColorRect" type="ColorRect" parent="MarginContainer" unique_id=209964060]
+z_index = -1
+layout_mode = 2
+mouse_filter = 1
+color = Color(0.14072381, 0.14234103, 0.1827715, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScreenButtons/MarginContainer" unique_id=640660265]
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=211567897]
+z_index = -1
+offset_left = 216.0
+offset_top = -216.0
+offset_right = 344.0
+offset_bottom = 216.0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer2" unique_id=793160842]
+z_index = -1
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+color = Color(0.14072381, 0.14234103, 0.1827715, 1)
+
+[node name="ScreenButtonsGUI" type="Node" parent="." unique_id=1313250108]
+
+[node name="ScreenButtons" type="MarginContainer" parent="ScreenButtonsGUI" unique_id=1758116062]
+z_index = 2
+offset_left = 232.0
+offset_top = -160.0
+offset_right = 328.0
+offset_bottom = 184.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenButtonsGUI/ScreenButtons" unique_id=640660265]
 layout_mode = 2
 
-[node name="ResetButton" type="Button" parent="ScreenButtons/MarginContainer/VBoxContainer" unique_id=2068131142]
-custom_minimum_size = Vector2(50, 50)
+[node name="ResetButton" type="Button" parent="ScreenButtonsGUI/ScreenButtons/VBoxContainer" unique_id=2068131142]
+custom_minimum_size = Vector2(80, 75)
 layout_mode = 2
-text = "R"
+theme = ExtResource("4_lquwl")
+text = "RESTART
+"
 icon_alignment = 1
 
-[node name="GOLButton" type="Button" parent="ScreenButtons/MarginContainer/VBoxContainer" unique_id=663202793]
-custom_minimum_size = Vector2(50, 50)
+[node name="GOLButton" type="Button" parent="ScreenButtonsGUI/ScreenButtons/VBoxContainer" unique_id=663202793]
+custom_minimum_size = Vector2(50, 75)
 layout_mode = 2
-text = "G"
+theme = ExtResource("4_lquwl")
+toggle_mode = true
+text = "ENABLE
+GAME 
+OF LIFE"
 
-[node name="OptionMenuButton" type="Button" parent="ScreenButtons/MarginContainer/VBoxContainer" unique_id=1632477047]
-custom_minimum_size = Vector2(50, 50)
+[node name="OptionMenuButton" type="Button" parent="ScreenButtonsGUI/ScreenButtons/VBoxContainer" unique_id=1632477047]
+custom_minimum_size = Vector2(50, 75)
 layout_mode = 2
-text = "O"
+theme = ExtResource("4_lquwl")
+text = "OPTIONS 
+MENU"
 
-[node name="HelpButton" type="Button" parent="ScreenButtons/MarginContainer/VBoxContainer" unique_id=770214190]
-custom_minimum_size = Vector2(50, 50)
+[node name="ExitButton" type="Button" parent="ScreenButtonsGUI/ScreenButtons/VBoxContainer" unique_id=280695840]
+custom_minimum_size = Vector2(50, 75)
 layout_mode = 2
-text = "H"
+theme = ExtResource("4_lquwl")
+text = "QUIT 
+"
+script = ExtResource("4_1bvp3")
 
-[node name="OptionsMenu" type="Node" parent="." unique_id=1092258733]
+[node name="OptionsMenuGUI" type="Node" parent="." unique_id=1092258733]
 
-[node name="MarginContainer" type="MarginContainer" parent="OptionsMenu" unique_id=326507447]
+[node name="OptionsMenu" type="MarginContainer" parent="OptionsMenuGUI" unique_id=326507447]
 custom_minimum_size = Vector2(300, 300)
-offset_left = -150.0
-offset_top = -150.0
-offset_right = 150.0
-offset_bottom = 150.0
+offset_left = -344.0
+offset_top = -216.0
+offset_right = 168.0
+offset_bottom = 216.0
+offset_transform_position = Vector2(8, 8)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="OptionsMenu/MarginContainer" unique_id=1828195125]
-visible = false
+[node name="Background" type="ColorRect" parent="OptionsMenuGUI/OptionsMenu" unique_id=1408587406]
+z_index = 3
 layout_mode = 2
-text = "Options:
+color = Color(0.14117648, 0.14117648, 0.18431373, 1)
 
-View Mines:
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenuGUI/OptionsMenu" unique_id=953534322]
+z_index = 3
+layout_mode = 2
 
-Board Specs:
-	Rows:
-	Columns:
-	Mines:
+[node name="Title" type="ColorRect" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer" unique_id=1578922749]
+z_index = 3
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+color = Color(0.50980395, 0.4745098, 0.4, 1)
 
-Game of Life Settings:
-	Alive:
-	Dead:"
+[node name="RichTextLabel" type="RichTextLabel" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/Title" unique_id=1626200548]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.28
+offset_transform_enabled = true
+theme_override_colors/default_color = Color(0.15294118, 0.14117648, 0.1254902, 1)
+theme_override_font_sizes/normal_font_size = 40
+text = "OPTIONS"
+horizontal_alignment = 1
 
-[connection signal="pressed" from="ScreenButtons/MarginContainer/VBoxContainer/ResetButton" to="GridLayer" method="reset"]
-[connection signal="pressed" from="ScreenButtons/MarginContainer/VBoxContainer/GOLButton" to="GridLayer" method="set_gol"]
+[node name="HBoxContainer" type="HBoxContainer" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer" unique_id=1855163136]
+custom_minimum_size = Vector2(500, 350)
+layout_mode = 2
+
+[node name="LeftVBoxContainer" type="VBoxContainer" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer" unique_id=1863879016]
+custom_minimum_size = Vector2(228, 0)
+layout_mode = 2
+
+[node name="ViewMines" type="RichTextLabel" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer" unique_id=1962253893]
+z_index = 2
+custom_minimum_size = Vector2(200, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.28
+offset_transform_enabled = true
+offset_transform_position = Vector2(10, 0)
+mouse_filter = 1
+text = "View Mines"
+
+[node name="CheckButton" type="CheckButton" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/ViewMines" unique_id=2114258446]
+z_index = 5
+layout_mode = 0
+offset_left = 8.0
+offset_top = -3.0
+offset_right = 176.0
+offset_bottom = 29.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 0)
+theme = ExtResource("6_7mycd")
+flat = true
+alignment = 1
+
+[node name="BoardSetup" type="ColorRect" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer" unique_id=1150376130]
+custom_minimum_size = Vector2(0, 130)
+custom_maximum_size = Vector2(183, -1)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(10, 0)
+mouse_filter = 1
+color = Color(0.50980395, 0.4745098, 0.4, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/BoardSetup" unique_id=716446675]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 192.0
+offset_bottom = 129.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 6)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/BoardSetup/VBoxContainer" unique_id=72728479]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.15294118, 0.14117648, 0.1254902, 1)
+theme_override_font_sizes/normal_font_size = 20
+text = "	Board Setup:"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/BoardSetup/VBoxContainer" unique_id=1267657338]
+z_index = 2
+custom_minimum_size = Vector2(200, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.28
+offset_transform_enabled = true
+offset_transform_position = Vector2(10, 0)
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.15294118, 0.14117648, 0.1254902, 1)
+text = "Rows :"
+
+[node name="CheckButton" type="LineEdit" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/BoardSetup/VBoxContainer/RichTextLabel2" unique_id=977972428]
+z_index = 5
+custom_maximum_size = Vector2(50, -1)
+layout_mode = 0
+offset_left = 96.0
+offset_top = -9.0
+offset_right = 146.0
+offset_bottom = 31.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 0)
+theme = ExtResource("6_7mycd")
+theme_override_font_sizes/font_size = 20
+placeholder_text = "8"
+flat = true
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/BoardSetup/VBoxContainer" unique_id=2076550018]
+z_index = 2
+custom_minimum_size = Vector2(200, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.28
+offset_transform_enabled = true
+offset_transform_position = Vector2(10, 0)
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.15294118, 0.14117648, 0.1254902, 1)
+text = "Columns :"
+
+[node name="CheckButton" type="LineEdit" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/BoardSetup/VBoxContainer/RichTextLabel3" unique_id=474479359]
+z_index = 5
+custom_maximum_size = Vector2(50, -1)
+layout_mode = 0
+offset_left = 96.0
+offset_top = -5.0
+offset_right = 179.625
+offset_bottom = 31.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 0)
+theme = ExtResource("6_7mycd")
+theme_override_font_sizes/font_size = 20
+placeholder_text = "6"
+alignment = 3
+flat = true
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/BoardSetup/VBoxContainer" unique_id=492982995]
+z_index = 2
+custom_minimum_size = Vector2(200, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.28
+offset_transform_enabled = true
+offset_transform_position = Vector2(10, 0)
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.15294118, 0.14117648, 0.1254902, 1)
+text = "Mines :"
+
+[node name="CheckButton" type="LineEdit" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/BoardSetup/VBoxContainer/RichTextLabel4" unique_id=1539470641]
+z_index = 5
+custom_maximum_size = Vector2(50, -1)
+layout_mode = 0
+offset_left = 96.0
+offset_top = -5.0
+offset_right = 179.625
+offset_bottom = 31.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 0)
+theme = ExtResource("6_7mycd")
+theme_override_font_sizes/font_size = 20
+placeholder_text = "10"
+flat = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer" unique_id=1381026522]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(10, 6)
+text = "Cellular Automaton Rules:"
+
+[node name="CellularAutomaton" type="HBoxContainer" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer" unique_id=1230803730]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton" unique_id=576646803]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(10, 0)
+mouse_filter = 1
+text = "ALIVE"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton" unique_id=99949234]
+custom_minimum_size = Vector2(50, 10)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(20, 0)
+mouse_filter = 1
+text = "DEAD"
+
+[node name="RightVboxContainer" type="VBoxContainer" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer" unique_id=1216402992]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+
+[connection signal="pressed" from="ScreenButtonsGUI/ScreenButtons/VBoxContainer/ResetButton" to="GridLayer" method="reset"]
+[connection signal="pressed" from="ScreenButtonsGUI/ScreenButtons/VBoxContainer/GOLButton" to="GridLayer" method="set_gol"]
+[connection signal="pressed" from="ScreenButtonsGUI/ScreenButtons/VBoxContainer/ExitButton" to="ScreenButtonsGUI/ScreenButtons/VBoxContainer/ExitButton" method="quit_pressed"]

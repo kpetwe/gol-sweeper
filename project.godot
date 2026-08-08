@@ -31,4 +31,4 @@ window/stretch/scale=3.0
 [rendering]
 
 rendering_device/driver.windows="d3d12"
-environment/defaults/default_clear_color=Color(0.14400001, 0.2038, 0.3, 1)
+environment/defaults/default_clear_color=Color(0.19, 0.17581333, 0.1634, 1)
