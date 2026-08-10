@@ -152,7 +152,7 @@ toggle_mode = true
 text = "OPTIONS 
 MENU"
 
-[node name="ExitButton" type="Button" parent="ScreenButtonsGUI/ScreenButtons/VBoxContainer" unique_id=280695840 node_paths=PackedStringArray("option_screen")]
+[node name="ExitButton" type="Button" parent="ScreenButtonsGUI/ScreenButtons/VBoxContainer" unique_id=280695840 node_paths=PackedStringArray("option_screen", "board")]
 custom_minimum_size = Vector2(50, 75)
 layout_mode = 2
 theme = ExtResource("4_lquwl")
@@ -160,6 +160,7 @@ text = "QUIT
 "
 script = ExtResource("4_1bvp3")
 option_screen = NodePath("../../../../OptionsMenuGUI/OptionsMenu")
+board = NodePath("../../../../GridLayer")
 
 [node name="OptionsMenuGUI" type="Node" parent="." unique_id=1092258733]
 
@@ -837,7 +838,11 @@ text = "HOW TO PLAY:
 horizontal_alignment = 1
 
 [connection signal="pressed" from="ScreenButtonsGUI/ScreenButtons/VBoxContainer/ResetButton" to="GridLayer" method="reset"]
-[connection signal="pressed" from="ScreenButtonsGUI/ScreenButtons/VBoxContainer/GOLButton" to="GridLayer" method="set_gol"]
+[connection signal="toggled" from="ScreenButtonsGUI/ScreenButtons/VBoxContainer/GOLButton" to="GridLayer" method="set_gol"]
 [connection signal="pressed" from="ScreenButtonsGUI/ScreenButtons/VBoxContainer/OptionMenuButton" to="ScreenButtonsGUI/ScreenButtons/VBoxContainer/ExitButton" method="options_pressed"]
 [connection signal="pressed" from="ScreenButtonsGUI/ScreenButtons/VBoxContainer/ExitButton" to="ScreenButtonsGUI/ScreenButtons/VBoxContainer/ExitButton" method="quit_pressed"]
-[connection signal="pressed" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer/HBoxContainer/Button" to="GridLayer" method="set_view_mines"]
+[connection signal="value_changed" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/BoardSetup/VBoxContainer/Rows/CheckButton2" to="GridLayer" method="set_rows"]
+[connection signal="value_changed" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/BoardSetup/VBoxContainer/Cols/CheckButton" to="GridLayer" method="set_cols"]
+[connection signal="value_changed" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/BoardSetup/VBoxContainer/Mines/CheckButton" to="GridLayer" method="set_mines"]
+[connection signal="toggled" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer/HBoxContainer/Button" to="GridLayer" method="set_view_mines"]
+[connection signal="pressed" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer/HBoxContainer/Button2" to="ScreenButtonsGUI/ScreenButtons/VBoxContainer/ExitButton" method="set_default"]

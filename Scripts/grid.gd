@@ -69,27 +69,34 @@ func reset():
 	mine_cells = {}
 	_ready()
 	
+signal trigger_reset
 
-func set_gol():
-	gol_on = !gol_on
+func set_gol(toggle:bool):
+	gol_on = toggle
 	
-func set_view_mines():
-	view_mines = !view_mines
-	reset()
+func set_view_mines(toggle:bool):
+	view_mines = toggle
+	trigger_reset.emit()
 	
 func set_rows(r):
-	rows = r
+	trigger_reset.emit()
+	rows = int(r)
 
 func set_cols(c):
-	cols = c
+	trigger_reset.emit()
+	cols = int(c)
 
 func set_mines(m):
-	mines = m
+	trigger_reset.emit()
+	mines = int(m)
+
+	
 
 """
 	Draws a blank board
 """
 func init_board():
+	print(rows, " ", cols)
 	for i in rows:
 		for j in cols:
 			set_tile_cell(Vector2i(i - rows/2, j-cols/2), "B")
@@ -113,7 +120,7 @@ func init_mines():
 """
 func _input(event: InputEvent):
 	# can change to shade darker when hovering perhaps
-	if event is not InputEventMouseButton || !event.pressed:
+	if event is not InputEventMouseButton || !event.pressed || !self.visible:
 		return
 		
 	# turns mouse click into integer/grid coords
@@ -314,6 +321,7 @@ func set_tile_cell(cell:Vector2i, type):
 	set_cell(cell, TILE_SET_ID, CELLS[type])
 
 # Check if cell is on the grid
+# TODO: Fix bug for odd dimensions
 func in_bounds(cell: Vector2i):
 	if (cell.x >= -rows/2 && cell.x <= rows/2 -1):
 		if (cell.y >= -cols/2 && cell.y <= cols/2 - 1):
