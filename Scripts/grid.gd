@@ -106,8 +106,8 @@ func init_board():
 """
 func init_mines():
 	while mine_cells.size() < mines:
-		var cell = Vector2i(randi_range(-rows/2, rows/2-1), 
-			randi_range(-cols/2, cols/2-1))
+		var cell = Vector2i(randi_range(-rows/2, rows/2-1 + rows % 2), 
+			randi_range(-cols/2, cols/2-1 + cols % 2))
 		mine_cells[cell] = null	
 	if (view_mines):
 		for mine in mine_cells:
@@ -321,9 +321,8 @@ func set_tile_cell(cell:Vector2i, type):
 	set_cell(cell, TILE_SET_ID, CELLS[type])
 
 # Check if cell is on the grid
-# TODO: Fix bug for odd dimensions
 func in_bounds(cell: Vector2i):
-	if (cell.x >= -rows/2 && cell.x <= rows/2 -1):
-		if (cell.y >= -cols/2 && cell.y <= cols/2 - 1):
+	if (cell.x >= -rows/2 && cell.x <= rows/2 -1 + rows % 2):
+		if (cell.y >= -cols/2 && cell.y <= cols/2 - 1 + cols % 2):
 			return true
 	return false
