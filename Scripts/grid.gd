@@ -96,7 +96,7 @@ func set_gol_array(toggle:bool, clicked:String):
 	else:
 		GOL_DEAD[int(clicked[1])] = toggle
 	
-	
+
 
 """
 	Draws a blank board

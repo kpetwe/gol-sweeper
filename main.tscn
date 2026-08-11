@@ -6,6 +6,14 @@
 [ext_resource type="Script" uid="uid://c2dd2jkdroxuj" path="res://Scripts/buttons.gd" id="4_1bvp3"]
 [ext_resource type="Theme" uid="uid://b6u67bm1t6pi4" path="res://button_theme_1.tres" id="4_lquwl"]
 [ext_resource type="Theme" uid="uid://2vhcuboqm2ql" path="res://button_theme_2.tres" id="6_7mycd"]
+[ext_resource type="Texture2D" uid="uid://dkxokkmo3d7ef" path="res://Alt_Coloring/TileFlag.png" id="6_w48qg"]
+[ext_resource type="Texture2D" uid="uid://c5for7p055odf" path="res://HowToPlayIcons/help.png" id="7_ycdy4"]
+[ext_resource type="Texture2D" uid="uid://cpc50172emg46" path="res://HowToPlayIcons/help - Copy (2).png" id="8_w48qg"]
+[ext_resource type="Texture2D" uid="uid://brhbgs52rku7" path="res://HowToPlayIcons/help - Copy (3).png" id="9_vivmo"]
+[ext_resource type="Texture2D" uid="uid://x3b0kbyidwyo" path="res://HowToPlayIcons/help - Copy (4).png" id="10_2cqfq"]
+[ext_resource type="Texture2D" uid="uid://bs3jv4yvj5vf4" path="res://HowToPlayIcons/help - Copy (5).png" id="11_yaehf"]
+[ext_resource type="Texture2D" uid="uid://cf1ul2gyqhado" path="res://HowToPlayIcons/help - Copy (6).png" id="12_074og"]
+[ext_resource type="Texture2D" uid="uid://cr2fji2q073yi" path="res://HowToPlayIcons/help - Copy.png" id="13_cegan"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xm2m"]
 texture = ExtResource("1_ig7tw")
@@ -120,12 +128,21 @@ color = Color(0.14072381, 0.14234103, 0.1827715, 1)
 [node name="ScreenButtons" type="MarginContainer" parent="ScreenButtonsGUI" unique_id=1758116062]
 z_index = 2
 offset_left = 232.0
-offset_top = -160.0
+offset_top = -191.0
 offset_right = 328.0
-offset_bottom = 184.0
+offset_bottom = 231.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScreenButtonsGUI/ScreenButtons" unique_id=640660265]
 layout_mode = 2
+
+[node name="Display" type="RichTextLabel" parent="ScreenButtonsGUI/ScreenButtons/VBoxContainer" unique_id=1410616805]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+mouse_filter = 1
+text = "	200/200
+MINE
+SWEEPER"
+horizontal_alignment = 1
 
 [node name="ResetButton" type="Button" parent="ScreenButtonsGUI/ScreenButtons/VBoxContainer" unique_id=2068131142]
 custom_minimum_size = Vector2(80, 75)
@@ -161,6 +178,10 @@ text = "QUIT
 script = ExtResource("4_1bvp3")
 option_screen = NodePath("../../../../OptionsMenuGUI/OptionsMenu")
 board = NodePath("../../../../GridLayer")
+
+[node name="TileFlag" type="Sprite2D" parent="ScreenButtonsGUI/ScreenButtons/VBoxContainer" unique_id=300592121]
+position = Vector2(11, 12)
+texture = ExtResource("6_w48qg")
 
 [node name="OptionsMenuGUI" type="Node" parent="." unique_id=1092258733]
 
@@ -813,7 +834,7 @@ offset_transform_visual_only = false
 theme = ExtResource("4_lquwl")
 text = "Reset Settings"
 
-[node name="ColorRect" type="ColorRect" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer" unique_id=551759983]
+[node name="Howtoplay" type="ColorRect" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer" unique_id=551759983]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 offset_transform_enabled = true
@@ -822,12 +843,11 @@ offset_transform_visual_only = false
 mouse_filter = 1
 color = Color(0.50980395, 0.4745098, 0.4, 1)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer/ColorRect" unique_id=1846655861]
-custom_minimum_size = Vector2(0, 282)
+[node name="RichTextLabel" type="RichTextLabel" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer/Howtoplay" unique_id=1846655861]
 layout_mode = 0
 offset_top = 1.0
 offset_right = 248.0
-offset_bottom = 283.0
+offset_bottom = 25.0
 offset_transform_enabled = true
 offset_transform_position = Vector2(8, 8)
 offset_transform_visual_only = false
@@ -835,6 +855,175 @@ mouse_filter = 1
 theme_override_colors/default_color = Color(0.15294118, 0.14117648, 0.1254902, 1)
 text = "HOW TO PLAY:"
 horizontal_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer/Howtoplay" unique_id=1919616608]
+layout_mode = 0
+offset_top = 137.0
+offset_right = 112.0
+offset_bottom = 169.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 8)
+offset_transform_visual_only = false
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.15294118, 0.14117648, 0.1254902, 1)
+theme_override_font_sizes/normal_font_size = 14
+text = "Game of Life:"
+
+[node name="RichTextLabel7" type="RichTextLabel" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer/Howtoplay" unique_id=979611689]
+layout_mode = 0
+offset_top = 25.0
+offset_right = 112.0
+offset_bottom = 57.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 8)
+offset_transform_visual_only = false
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.15294118, 0.14117648, 0.1254902, 1)
+theme_override_font_sizes/normal_font_size = 14
+text = "Minesweeper:"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer/Howtoplay" unique_id=1967054293]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 90.0
+offset_right = 38.0
+offset_bottom = 122.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 8)
+offset_transform_visual_only = false
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.15294118, 0.14117648, 0.1254902, 1)
+theme_override_font_sizes/normal_font_size = 8
+text = "Dig 
+Holes"
+horizontal_alignment = 1
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer/Howtoplay" unique_id=511644707]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 90.0
+offset_right = 90.0
+offset_bottom = 138.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 8)
+offset_transform_visual_only = false
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.15294118, 0.14117648, 0.1254902, 1)
+theme_override_font_sizes/normal_font_size = 8
+text = "Place 
+Mines"
+horizontal_alignment = 1
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer/Howtoplay" unique_id=832589465]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 91.0
+offset_right = 191.0
+offset_bottom = 139.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 8)
+offset_transform_visual_only = false
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.15294118, 0.14117648, 0.1254902, 1)
+theme_override_font_sizes/normal_font_size = 8
+text = "Center number
+tells you neighboring
+mines"
+horizontal_alignment = 1
+
+[node name="RichTextLabel8" type="RichTextLabel" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer/Howtoplay" unique_id=1728253306]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 190.0
+offset_right = 138.0
+offset_bottom = 238.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 8)
+offset_transform_visual_only = false
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.15294118, 0.14117648, 0.1254902, 1)
+theme_override_font_sizes/normal_font_size = 8
+text = "ALIVE"
+horizontal_alignment = 1
+
+[node name="goltext" type="RichTextLabel" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer/Howtoplay" unique_id=2138341232]
+layout_mode = 0
+offset_top = 209.0
+offset_right = 248.0
+offset_bottom = 257.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 8)
+offset_transform_visual_only = false
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.15294118, 0.14117648, 0.1254902, 1)
+theme_override_font_sizes/normal_font_size = 8
+text = "A checked box in the settings indicates that the cell will become ALIVE in the next generation, e.g."
+horizontal_alignment = 1
+
+[node name="RichTextLabel9" type="RichTextLabel" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer/Howtoplay" unique_id=1367013578]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 190.0
+offset_right = 224.0
+offset_bottom = 238.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 8)
+offset_transform_visual_only = false
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.15294118, 0.14117648, 0.1254902, 1)
+theme_override_font_sizes/normal_font_size = 8
+text = "DEAD"
+horizontal_alignment = 1
+
+[node name="RichTextLabel6" type="RichTextLabel" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer/Howtoplay" unique_id=314991305]
+layout_mode = 0
+offset_left = 189.0
+offset_top = 91.0
+offset_right = 253.0
+offset_bottom = 107.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 8)
+offset_transform_visual_only = false
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.15294118, 0.14117648, 0.1254902, 1)
+theme_override_font_sizes/normal_font_size = 8
+text = "Don't explode"
+
+[node name="Help" type="Sprite2D" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer" unique_id=515778186]
+z_index = 10
+position = Vector2(34, 135)
+texture = ExtResource("7_ycdy4")
+
+[node name="HelpCopy(2)" type="Sprite2D" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer" unique_id=728199916]
+z_index = 10
+position = Vector2(151, 136)
+texture = ExtResource("8_w48qg")
+
+[node name="HelpCopy(3)" type="Sprite2D" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer" unique_id=181172148]
+z_index = 10
+position = Vector2(225, 134)
+texture = ExtResource("9_vivmo")
+
+[node name="HelpCopy(4)" type="Sprite2D" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer" unique_id=1000763186]
+z_index = 10
+position = Vector2(99, 239)
+texture = ExtResource("10_2cqfq")
+
+[node name="HelpCopy(5)" type="Sprite2D" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer" unique_id=1483577162]
+z_index = 10
+position = Vector2(186, 237)
+texture = ExtResource("11_yaehf")
+
+[node name="HelpCopy(6)" type="Sprite2D" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer" unique_id=1569659940]
+z_index = 10
+position = Vector2(136, 317)
+scale = Vector2(1.2111111, 1.2111111)
+texture = ExtResource("12_074og")
+
+[node name="HelpCopy" type="Sprite2D" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer" unique_id=864975591]
+z_index = 10
+position = Vector2(81, 136)
+texture = ExtResource("13_cegan")
 
 [connection signal="pressed" from="ScreenButtonsGUI/ScreenButtons/VBoxContainer/ResetButton" to="GridLayer" method="reset"]
 [connection signal="toggled" from="ScreenButtonsGUI/ScreenButtons/VBoxContainer/GOLButton" to="GridLayer" method="set_gol"]
