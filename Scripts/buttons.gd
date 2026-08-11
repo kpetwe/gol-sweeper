@@ -3,7 +3,6 @@ extends Node
 @export var option_screen: MarginContainer
 @export var board: Board
 
-
 signal newgame
 var change = false
 

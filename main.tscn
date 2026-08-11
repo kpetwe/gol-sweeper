@@ -499,7 +499,7 @@ text = "8"
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 
-[node name="CheckBox" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes" unique_id=598374061]
+[node name="A0" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes" unique_id=598374061]
 custom_maximum_size = Vector2(16, 16)
 layout_mode = 2
 offset_transform_enabled = true
@@ -507,7 +507,7 @@ offset_transform_position = Vector2(-24, 0)
 offset_transform_visual_only = false
 theme = ExtResource("4_lquwl")
 
-[node name="CheckBox2" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes" unique_id=2088678005]
+[node name="A1" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes" unique_id=2088678005]
 custom_maximum_size = Vector2(16, 16)
 layout_mode = 2
 offset_transform_enabled = true
@@ -515,7 +515,7 @@ offset_transform_position = Vector2(-24, -4)
 offset_transform_visual_only = false
 theme = ExtResource("4_lquwl")
 
-[node name="CheckBox3" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes" unique_id=376326900]
+[node name="A2" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes" unique_id=376326900]
 custom_maximum_size = Vector2(16, 16)
 layout_mode = 2
 offset_transform_enabled = true
@@ -524,7 +524,7 @@ offset_transform_visual_only = false
 theme = ExtResource("4_lquwl")
 button_pressed = true
 
-[node name="CheckBox4" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes" unique_id=1479617315]
+[node name="A3" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes" unique_id=1479617315]
 custom_maximum_size = Vector2(16, 16)
 layout_mode = 2
 offset_transform_enabled = true
@@ -533,7 +533,7 @@ offset_transform_visual_only = false
 theme = ExtResource("4_lquwl")
 button_pressed = true
 
-[node name="CheckBox5" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes" unique_id=807739382]
+[node name="A4" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes" unique_id=807739382]
 custom_maximum_size = Vector2(16, 16)
 layout_mode = 2
 offset_transform_enabled = true
@@ -541,7 +541,7 @@ offset_transform_position = Vector2(-24, -16)
 offset_transform_visual_only = false
 theme = ExtResource("4_lquwl")
 
-[node name="CheckBox6" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes" unique_id=757273760]
+[node name="A5" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes" unique_id=757273760]
 custom_maximum_size = Vector2(16, 16)
 layout_mode = 2
 offset_transform_enabled = true
@@ -549,7 +549,7 @@ offset_transform_position = Vector2(-24, -20)
 offset_transform_visual_only = false
 theme = ExtResource("4_lquwl")
 
-[node name="CheckBox7" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes" unique_id=1992310860]
+[node name="A6" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes" unique_id=1992310860]
 custom_maximum_size = Vector2(16, 16)
 layout_mode = 2
 offset_transform_enabled = true
@@ -557,7 +557,7 @@ offset_transform_position = Vector2(-24, -24)
 offset_transform_visual_only = false
 theme = ExtResource("4_lquwl")
 
-[node name="CheckBox8" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes" unique_id=1806461252]
+[node name="A7" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes" unique_id=1806461252]
 custom_maximum_size = Vector2(16, 16)
 layout_mode = 2
 offset_transform_enabled = true
@@ -565,7 +565,7 @@ offset_transform_position = Vector2(-24, -28)
 offset_transform_visual_only = false
 theme = ExtResource("4_lquwl")
 
-[node name="CheckBox9" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes" unique_id=552847150]
+[node name="A8" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes" unique_id=552847150]
 custom_maximum_size = Vector2(16, 16)
 layout_mode = 2
 offset_transform_enabled = true
@@ -711,7 +711,7 @@ text = "8"
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 
-[node name="CheckBox" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes" unique_id=786407251]
+[node name="D0" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes" unique_id=786407251]
 custom_maximum_size = Vector2(16, 16)
 layout_mode = 2
 offset_transform_enabled = true
@@ -719,7 +719,7 @@ offset_transform_position = Vector2(-24, 0)
 offset_transform_visual_only = false
 theme = ExtResource("4_lquwl")
 
-[node name="CheckBox2" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes" unique_id=86551127]
+[node name="D1" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes" unique_id=86551127]
 custom_maximum_size = Vector2(16, 16)
 layout_mode = 2
 offset_transform_enabled = true
@@ -727,7 +727,7 @@ offset_transform_position = Vector2(-24, -4)
 offset_transform_visual_only = false
 theme = ExtResource("4_lquwl")
 
-[node name="CheckBox3" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes" unique_id=422132868]
+[node name="D2" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes" unique_id=422132868]
 custom_maximum_size = Vector2(16, 16)
 layout_mode = 2
 offset_transform_enabled = true
@@ -735,7 +735,7 @@ offset_transform_position = Vector2(-24, -8)
 offset_transform_visual_only = false
 theme = ExtResource("4_lquwl")
 
-[node name="CheckBox4" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes" unique_id=2022166174]
+[node name="D3" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes" unique_id=2022166174]
 custom_maximum_size = Vector2(16, 16)
 layout_mode = 2
 offset_transform_enabled = true
@@ -744,7 +744,7 @@ offset_transform_visual_only = false
 theme = ExtResource("4_lquwl")
 button_pressed = true
 
-[node name="CheckBox5" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes" unique_id=1105784027]
+[node name="D4" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes" unique_id=1105784027]
 custom_maximum_size = Vector2(16, 16)
 layout_mode = 2
 offset_transform_enabled = true
@@ -752,7 +752,7 @@ offset_transform_position = Vector2(-24, -16)
 offset_transform_visual_only = false
 theme = ExtResource("4_lquwl")
 
-[node name="CheckBox6" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes" unique_id=1615015152]
+[node name="D5" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes" unique_id=1615015152]
 custom_maximum_size = Vector2(16, 16)
 layout_mode = 2
 offset_transform_enabled = true
@@ -760,7 +760,7 @@ offset_transform_position = Vector2(-24, -20)
 offset_transform_visual_only = false
 theme = ExtResource("4_lquwl")
 
-[node name="CheckBox7" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes" unique_id=440617870]
+[node name="D6" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes" unique_id=440617870]
 custom_maximum_size = Vector2(16, 16)
 layout_mode = 2
 offset_transform_enabled = true
@@ -768,7 +768,7 @@ offset_transform_position = Vector2(-24, -24)
 offset_transform_visual_only = false
 theme = ExtResource("4_lquwl")
 
-[node name="CheckBox8" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes" unique_id=988353880]
+[node name="D7" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes" unique_id=988353880]
 custom_maximum_size = Vector2(16, 16)
 layout_mode = 2
 offset_transform_enabled = true
@@ -776,7 +776,7 @@ offset_transform_position = Vector2(-24, -28)
 offset_transform_visual_only = false
 theme = ExtResource("4_lquwl")
 
-[node name="CheckBox9" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes" unique_id=1859417249]
+[node name="D8" type="CheckBox" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes" unique_id=1859417249]
 custom_maximum_size = Vector2(16, 16)
 layout_mode = 2
 offset_transform_enabled = true
@@ -833,8 +833,7 @@ offset_transform_position = Vector2(8, 8)
 offset_transform_visual_only = false
 mouse_filter = 1
 theme_override_colors/default_color = Color(0.15294118, 0.14117648, 0.1254902, 1)
-text = "HOW TO PLAY:
-"
+text = "HOW TO PLAY:"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="ScreenButtonsGUI/ScreenButtons/VBoxContainer/ResetButton" to="GridLayer" method="reset"]
@@ -844,5 +843,23 @@ horizontal_alignment = 1
 [connection signal="value_changed" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/BoardSetup/VBoxContainer/Rows/CheckButton2" to="GridLayer" method="set_rows"]
 [connection signal="value_changed" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/BoardSetup/VBoxContainer/Cols/CheckButton" to="GridLayer" method="set_cols"]
 [connection signal="value_changed" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/BoardSetup/VBoxContainer/Mines/CheckButton" to="GridLayer" method="set_mines"]
+[connection signal="toggled" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes/A0" to="GridLayer" method="set_gol_array" binds= ["A0"]]
+[connection signal="toggled" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes/A1" to="GridLayer" method="set_gol_array" binds= ["A1"]]
+[connection signal="toggled" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes/A2" to="GridLayer" method="set_gol_array" binds= ["A2"]]
+[connection signal="toggled" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes/A3" to="GridLayer" method="set_gol_array" binds= ["A3"]]
+[connection signal="toggled" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes/A4" to="GridLayer" method="set_gol_array" binds= ["A4"]]
+[connection signal="toggled" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes/A5" to="GridLayer" method="set_gol_array" binds= ["A5"]]
+[connection signal="toggled" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes/A6" to="GridLayer" method="set_gol_array" binds= ["A6"]]
+[connection signal="toggled" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes/A7" to="GridLayer" method="set_gol_array" binds= ["A7"]]
+[connection signal="toggled" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Alive/ColorRect/GridContainer/Checkboxes/A8" to="GridLayer" method="set_gol_array" binds= ["A8"]]
+[connection signal="toggled" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes/D0" to="GridLayer" method="set_gol_array" binds= ["D0"]]
+[connection signal="toggled" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes/D1" to="GridLayer" method="set_gol_array" binds= ["D1"]]
+[connection signal="toggled" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes/D2" to="GridLayer" method="set_gol_array" binds= ["D2"]]
+[connection signal="toggled" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes/D3" to="GridLayer" method="set_gol_array" binds= ["D3"]]
+[connection signal="toggled" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes/D4" to="GridLayer" method="set_gol_array" binds= ["D4"]]
+[connection signal="toggled" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes/D5" to="GridLayer" method="set_gol_array" binds= ["D5"]]
+[connection signal="toggled" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes/D6" to="GridLayer" method="set_gol_array" binds= ["D6"]]
+[connection signal="toggled" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes/D7" to="GridLayer" method="set_gol_array" binds= ["D7"]]
+[connection signal="toggled" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/CellularAutomaton/Dead/ColorRect/GridContainer/Checkboxes/D8" to="GridLayer" method="set_gol_array" binds= ["D8"]]
 [connection signal="toggled" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer/HBoxContainer/Button" to="GridLayer" method="set_view_mines"]
 [connection signal="pressed" from="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer/HBoxContainer/Button2" to="ScreenButtonsGUI/ScreenButtons/VBoxContainer/ExitButton" method="set_default"]

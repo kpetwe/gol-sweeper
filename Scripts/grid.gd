@@ -37,7 +37,6 @@ const TILE_SET_ID = 1
 @export var GOL_DEAD = [0, 0, 0, 1, 0, 0, 0, 0, 0]
 @export var GOL_ALIVE = [0, 0, 1, 1, 0, 0, 0, 0, 0]
 @export var gol_on = false
-
 @export var view_mines = false
 
 
@@ -90,6 +89,13 @@ func set_mines(m):
 	trigger_reset.emit()
 	mines = int(m)
 
+func set_gol_array(toggle:bool, clicked:String):
+	trigger_reset.emit()
+	if (clicked[0] == "A"):
+		GOL_ALIVE[int(clicked[1])] = toggle
+	else:
+		GOL_DEAD[int(clicked[1])] = toggle
+	
 	
 
 """
