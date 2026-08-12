@@ -56,10 +56,22 @@ func _ready():
 	clear()
 	init_board()
 	init_mines()
+	display_text(default_text(), -1)
+
+func check_mines():
+	if (mines > (rows-1)*(cols-1)):
+		print("true")
+		mines = 10
+		mine_spin_box.value = mines
+		reset()
+		display_text(flag_difference() + "ERROR:\nMINES > " + str((rows-1)*(cols-1)), 1)	
+
 
 """
 	Button Signals
 """
+
+@export var mine_spin_box: SpinBox
 
 func reset():
 	game_over = false
@@ -72,22 +84,33 @@ signal trigger_reset
 
 func set_gol(toggle:bool):
 	gol_on = toggle
+	if gol_on:
+		display_text(flag_difference() + "GOL ON", 1)
+	else:
+		display_text(flag_difference() + "GOL OFF", 1)
 	
 func set_view_mines(toggle:bool):
 	view_mines = toggle
+	if view_mines:
+		display_text(flag_difference() + "MINE VIEW\nON", 1)
+	else:
+		display_text(flag_difference() + "MINE VIEW\nOFF", 1)
 	trigger_reset.emit()
 	
 func set_rows(r):
 	trigger_reset.emit()
 	rows = int(r)
+	check_mines()
 
 func set_cols(c):
 	trigger_reset.emit()
 	cols = int(c)
+	check_mines()
 
 func set_mines(m):
 	trigger_reset.emit()
 	mines = int(m)
+	check_mines()
 
 func set_gol_array(toggle:bool, clicked:String):
 	trigger_reset.emit()
@@ -102,7 +125,7 @@ func set_gol_array(toggle:bool, clicked:String):
 	Draws a blank board
 """
 func init_board():
-	print(rows, " ", cols)
+	#print(rows, " ", cols)
 	for i in rows:
 		for j in cols:
 			set_tile_cell(Vector2i(i - rows/2, j-cols/2), "B")
@@ -115,10 +138,7 @@ func init_mines():
 		var cell = Vector2i(randi_range(-rows/2, rows/2-1 + rows % 2), 
 			randi_range(-cols/2, cols/2-1 + cols % 2))
 		mine_cells[cell] = null	
-	if (view_mines):
-		for mine in mine_cells:
-			erase_cell(mine)
-			set_tile_cell(mine, "M")
+	reveal_mines(mine_cells)
 	
 """
 	Handle mouse interaction with screen
@@ -131,6 +151,11 @@ func _input(event: InputEvent):
 		
 	# turns mouse click into integer/grid coords
 	var cell = local_to_map(get_local_mouse_position())
+	#print(cell)
+	
+	# Clicking flag button resets flags
+	if cell.x == 20 && cell.y == -12:
+		reset_flags()
 	
 	if !in_bounds(cell) || game_over:
 		return 
@@ -139,8 +164,7 @@ func _input(event: InputEvent):
 		grid_update(cell, true)
 	elif event.button_index == 2:
 		flag_update(cell)
-	
-	print(cell)
+		
 
 """
 	Updates flag on board
@@ -153,13 +177,49 @@ func flag_update(cell: Vector2i):
 		erase_cell(cell)
 		set_tile_cell(cell, "B")
 		flagged_cells.erase(cell)
+		display_text(default_text(), -1)
+		# go back to displaying mine if needed
+		if mine_cells.has(cell):
+			reveal_mines({cell:null})	
 	elif flagged_cells.size() < mine_cells.size():
 		erase_cell(cell)
 		set_tile_cell(cell, "F")
 		flagged_cells[cell] = null
+		# a little redundant but doesn't print "OUT OF FLAGS" otherwise
+		display_text(default_text(), -1)	
 	elif flagged_cells.size() >= mine_cells.size():
-		print("OUT OF FLAGS")	
+		display_text(flag_difference() + "OUT OF\n FLAGS", 1)
 
+"""
+	Recalls all flags if button is clicked
+"""
+func reset_flags():
+	for flag in flagged_cells:
+		erase_cell(flag)
+		set_tile_cell(flag, "B")
+	flagged_cells = {}
+	display_text(default_text(), -1)
+	reveal_mines(mine_cells)
+
+
+"""
+	Display Text
+"""
+
+@export var display: RichTextLabel
+
+func flag_difference():
+	return "\t" + str(mine_cells.size() - flagged_cells.size()) + "/" + str(mine_cells.size()) + "\n"
+
+func default_text():
+	return flag_difference() + "MINE\nSWEEPER"
+
+func display_text(txt: String, delay:int):
+	display.text = txt
+	if delay > 0:
+		await get_tree().create_timer(delay).timeout
+		display_text(default_text(), -1)
+		
 
 """
 	Updates Grid display
@@ -169,9 +229,9 @@ func flag_update(cell: Vector2i):
 func grid_update(cell: Vector2i, safe: bool):
 	# Unsafe tile hit
 	if mine_cells.has(cell):
-		print("GAME LOST")
+		display_text(flag_difference() + "GAME\nLOST", -1)
 		game_over = true
-		reveal_mines()
+		reveal_mines(mine_cells)
 		set_tile_cell(cell, "RM")
 		return
 	
@@ -186,12 +246,14 @@ func grid_update(cell: Vector2i, safe: bool):
 	# Evolves board at end of move
 	if gol_on && safe:
 		gol_update()
+		
+	display_text(default_text(), -1)
 	
 	# All safe tiles revealed
 	if game_won():
-		print("GAME WON")
+		display_text(flag_difference() + "GAME\nWON", -1)
 		game_over = true
-		reveal_mines()
+		reveal_mines(mine_cells)
 
 """
 	Check if the game is won
@@ -211,10 +273,11 @@ func game_won():
 """
 	Display location of mines
 """
-func reveal_mines():
-	for cell in mine_cells:
-		erase_cell(cell)
-		set_tile_cell(cell, "M")
+func reveal_mines(mine_set):
+	if (view_mines || game_over):
+		for cell in mine_set:
+			erase_cell(cell)
+			set_tile_cell(cell, "M")
 
 """
 	If enough flags have been put down, reveal neighboring
@@ -251,6 +314,9 @@ func neighbor_update(cell: Vector2i):
 func cell_update(cell: Vector2i):
 	if !in_bounds(cell) || checked_cells.has(cell):
 		return
+		
+	if flagged_cells.has(cell):
+		flagged_cells.erase(cell)
 	
 	var mc = count_mines(cell)
 	
@@ -308,6 +374,9 @@ func gol_update():
 			var mc = count_mines(cell)
 			set_tile_cell(cell, "%d" % mc)
 	
+	for cell in flagged_cells:
+		erase_cell(cell)
+		set_tile_cell(cell,"F")
 
 """
 	Counts the number of neighboring mines

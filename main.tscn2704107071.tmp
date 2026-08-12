@@ -91,11 +91,10 @@ sources/1 = SubResource("TileSetAtlasSource_h2yge")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1390186764]
 
-[node name="GridLayer" type="TileMapLayer" parent="." unique_id=2104647117 node_paths=PackedStringArray("mine_spin_box", "display")]
+[node name="GridLayer" type="TileMapLayer" parent="." unique_id=2104647117 node_paths=PackedStringArray("display")]
 position = Vector2(-88, 0)
 tile_set = SubResource("TileSet_mngvc")
 script = ExtResource("2_0xm2m")
-mine_spin_box = NodePath("../OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/BoardSetup/VBoxContainer/Mines/CheckButton")
 display = NodePath("../ScreenButtonsGUI/ScreenButtons/VBoxContainer/Display")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1984001984]

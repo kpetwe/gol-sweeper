@@ -2,7 +2,7 @@ extends Node
 
 @export var option_screen: MarginContainer
 @export var board: Board
-@export var display: RichTextLabel
+
 
 signal newgame
 var change = false
@@ -29,9 +29,7 @@ func options_pressed():
 	toggle_visibility(board)
 	
 func set_change():
-	print("yes")
 	change = true
 	
-func display_text(str: String):
-	display.text = str
+
 	
