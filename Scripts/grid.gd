@@ -55,7 +55,7 @@ func _ready():
 		cols > 0 && rows <= 30 && cols <= 24 && mines < 667)
 	clear()
 	init_board()
-	init_mines()
+	#init_mines()
 	display_text(default_text(), -1)
 
 func check_mines():
@@ -75,6 +75,7 @@ func check_mines():
 
 func reset():
 	game_over = false
+	first_click = true
 	flagged_cells = {}
 	checked_cells = {}
 	mine_cells = {}
@@ -131,13 +132,29 @@ func init_board():
 			set_tile_cell(Vector2i(i - rows/2, j-cols/2), "B")
 
 """
+	Forces neighboring 1 tile radius to be safe
+"""
+var first_click = true
+func on_first_click(fcell:Vector2i):
+	first_click = false
+	init_mines(fcell)
+	cell_update(fcell)
+
+
+"""
 	Stores addresses of initial mines
 """
-func init_mines():
+func init_mines(fcell: Vector2i):
+	var nbhd = {}
+	for i in range(-1,2):
+		for j in range(-1,2):
+			nbhd[fcell + Vector2i(i, j)] = null
+	
 	while mine_cells.size() < mines:
 		var cell = Vector2i(randi_range(-rows/2, rows/2-1 + rows % 2), 
 			randi_range(-cols/2, cols/2-1 + cols % 2))
-		mine_cells[cell] = null	
+		if !nbhd.has(cell):
+			mine_cells[cell] = null	
 	reveal_mines(mine_cells)
 	
 """
@@ -146,7 +163,7 @@ func init_mines():
 """
 func _input(event: InputEvent):
 	# can change to shade darker when hovering perhaps
-	if event is not InputEventMouseButton || !event.pressed || !self.visible:
+	if event is not InputEventMouseButton || !event.pressed || !self.visible || game_over:
 		return
 		
 	# turns mouse click into integer/grid coords
@@ -157,7 +174,7 @@ func _input(event: InputEvent):
 	if cell.x == 20 && cell.y == -12:
 		reset_flags()
 	
-	if !in_bounds(cell) || game_over:
+	if !in_bounds(cell) :
 		return 
 
 	if event.button_index == 1:
@@ -227,8 +244,11 @@ func display_text(txt: String, delay:int):
 	@param bool safe: True if it's safe to perform GOL update 
 """
 func grid_update(cell: Vector2i, safe: bool):
+	if first_click:
+		on_first_click(cell)
+	
 	# Unsafe tile hit
-	if mine_cells.has(cell):
+	elif mine_cells.has(cell):
 		display_text(flag_difference() + "GAME\nLOST", -1)
 		game_over = true
 		reveal_mines(mine_cells)
