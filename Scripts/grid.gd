@@ -20,7 +20,7 @@ const CELLS = {
 }
 
 # source color on sprite map
-const TILE_SET_ID = 1
+const TILE_SET_ID = 2
 
 # Board specs
 @export var rows = 8
