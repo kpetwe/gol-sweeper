@@ -144,7 +144,7 @@ button_pressed = true
 text = "OPTIONS 
 MENU"
 
-[node name="ExitButton" type="Button" parent="ScreenButtonsGUI/ScreenButtons/VBoxContainer" unique_id=280695840 node_paths=PackedStringArray("option_screen", "board", "page1", "page2", "numberbutton")]
+[node name="ExitButton" type="Button" parent="ScreenButtonsGUI/ScreenButtons/VBoxContainer" unique_id=280695840 node_paths=PackedStringArray("option_screen", "board", "page2", "page1", "numberbutton")]
 custom_minimum_size = Vector2(50, 75)
 layout_mode = 2
 theme = ExtResource("4_lquwl")
@@ -153,8 +153,8 @@ text = "QUIT
 script = ExtResource("4_1bvp3")
 option_screen = NodePath("../../../../OptionsMenuGUI/OptionsMenu")
 board = NodePath("../../../../GridLayer")
-page1 = NodePath("../../../../OptionsMenuGUI/MarginContainer")
-page2 = NodePath("../../../../OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer/Howtoplay")
+page2 = NodePath("../../../../OptionsMenuGUI/MarginContainer")
+page1 = NodePath("../../../../OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer/Howtoplay")
 numberbutton = NodePath("../../../../OptionsMenuGUI/Button")
 
 [node name="TileFlag" type="Sprite2D" parent="ScreenButtonsGUI/ScreenButtons/VBoxContainer" unique_id=300592121]
@@ -231,6 +231,7 @@ offset_transform_visual_only = false
 [node name="RichTextLabel" type="RichTextLabel" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/LeftVBoxContainer/BoardSetup/VBoxContainer" unique_id=72728479]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
+mouse_filter = 1
 theme_override_colors/default_color = Color(0.15294118, 0.14117648, 0.1254902, 1)
 theme_override_font_sizes/normal_font_size = 20
 text = "	Board Setup:"
@@ -812,7 +813,6 @@ theme = ExtResource("4_lquwl")
 text = "Reset Settings"
 
 [node name="Howtoplay" type="ColorRect" parent="OptionsMenuGUI/OptionsMenu/VBoxContainer/HBoxContainer/RightVboxContainer" unique_id=551759983]
-visible = false
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 offset_transform_enabled = true
@@ -1004,10 +1004,11 @@ position = Vector2(81, 136)
 texture = ExtResource("13_cegan")
 
 [node name="MarginContainer" type="MarginContainer" parent="OptionsMenuGUI" unique_id=714866145]
+visible = false
 z_index = 13
 offset_left = -112.0
 offset_top = -105.0
-offset_right = 152.0
+offset_right = 153.0
 offset_bottom = 195.0
 
 [node name="ColorRect" type="ColorRect" parent="OptionsMenuGUI/MarginContainer" unique_id=1357749530]
@@ -1066,9 +1067,9 @@ anchor_left = 0.05
 anchor_top = 0.126
 anchor_right = 0.05
 anchor_bottom = 0.126
-offset_left = 84.799995
+offset_left = 85.799995
 offset_top = 116.703995
-offset_right = 110.799995
+offset_right = 111.799995
 offset_bottom = 133.704
 offset_transform_enabled = true
 theme = ExtResource("4_lquwl")
