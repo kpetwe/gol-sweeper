@@ -138,6 +138,7 @@ var first_click = true
 func on_first_click(fcell:Vector2i):
 	first_click = false
 	init_mines(fcell)
+	display_text(default_text(), -1)
 	cell_update(fcell)
 
 
@@ -145,10 +146,11 @@ func on_first_click(fcell:Vector2i):
 	Stores addresses of initial mines
 """
 func init_mines(fcell: Vector2i):
-	var nbhd = {}
-	for i in range(-1,2):
-		for j in range(-1,2):
-			nbhd[fcell + Vector2i(i, j)] = null
+	var nbhd = get_neighborhood(fcell, true, false)
+	#var nbhd = {}
+	#for i in range(-1,2):
+		#for j in range(-1,2):
+			#nbhd[fcell + Vector2i(i, j)] = null
 	
 	while mine_cells.size() < mines:
 		var cell = Vector2i(randi_range(-rows/2, rows/2-1 + rows % 2), 
@@ -246,6 +248,7 @@ func display_text(txt: String, delay:int):
 func grid_update(cell: Vector2i, safe: bool):
 	if first_click:
 		on_first_click(cell)
+		return
 	
 	# Unsafe tile hit
 	elif mine_cells.has(cell):
@@ -306,24 +309,32 @@ func reveal_mines(mine_set):
 	@return bool: true if it is safe to perform GOL update
 """
 func neighbor_update(cell: Vector2i):
-	var mc = count_mines(cell)
+	var nbhd = get_neighborhood(cell, false, false)
+	var mc = count_mines(cell, nbhd)
 	var fc = 0
 	var safe = false
 	
 	# Check that there's a matching number of flags
-	for i in range(-1, 2):
-		for j in range(-1, 2):
-			if flagged_cells.has(Vector2i(i, j) + cell):
-				fc += 1
+	for nbh in nbhd:
+		if flagged_cells.has(nbh):
+			fc += 1
+	#for i in range(-1, 2):
+		#for j in range(-1, 2):
+			#if flagged_cells.has(Vector2i(i, j) + cell):
+				#fc += 1
 	if mc == fc:
 		# Update hidden cells
-		for i in range(-1, 2):
-			for j in range(-1, 2):
-				var tc = Vector2i(i, j) + cell
-				# prevent infinite loop and revealing a mine tile as "safe"
-				if !checked_cells.has(tc) && !flagged_cells.has(tc):
-					grid_update(tc, false)
-					safe = true
+		for nbh in nbhd:
+			if !checked_cells.has(nbh) && !flagged_cells.has(nbh):
+				grid_update(nbh, false)
+				safe = true
+		#for i in range(-1, 2):
+			#for j in range(-1, 2):
+				#var tc = Vector2i(i, j) + cell
+				## prevent infinite loop and revealing a mine tile as "safe"
+				#if !checked_cells.has(tc) && !flagged_cells.has(tc):
+					#grid_update(tc, false)
+					#safe = true
 	return safe
 	
 
@@ -338,7 +349,8 @@ func cell_update(cell: Vector2i):
 	if flagged_cells.has(cell):
 		flagged_cells.erase(cell)
 	
-	var mc = count_mines(cell)
+	var nbhd = get_neighborhood(cell, false, false)
+	var mc = count_mines(cell, nbhd)
 	
 	# casts integer to string for numbered tiles
 	set_tile_cell(cell, "%d" % mc)
@@ -347,10 +359,12 @@ func cell_update(cell: Vector2i):
 
 	# add neighboring safe tiles to list
 	if mc == 0:
-		for i in range(-1, 2):
-			for j in range(-1, 2):
-				if (i != 0 || j != 0):
-					cell_update(cell + Vector2i(i, j))
+		for nbh in nbhd:
+			cell_update(nbh)
+		#for i in range(-1, 2):
+			#for j in range(-1, 2):
+				#if (i != 0 || j != 0):
+					#cell_update(cell + Vector2i(i, j))
 
 """
 	Perform game of life updates on the board grid
@@ -362,7 +376,7 @@ func gol_update():
 	for i in rows:
 		for j in cols:
 			var cell = Vector2i(i - rows/2, j-cols/2)
-			var mc = count_mines(cell)
+			var mc = count_mines(cell, get_neighborhood(cell, false, true))
 			var res
 			if mine_cells.has(cell):
 				res = GOL_ALIVE[mc]
@@ -391,7 +405,7 @@ func gol_update():
 		if mine_cells.has(cell):
 			set_tile_cell(cell, "M")
 		else:
-			var mc = count_mines(cell)
+			var mc = count_mines(cell, get_neighborhood(cell, false, false))
 			set_tile_cell(cell, "%d" % mc)
 	
 	for cell in flagged_cells:
@@ -403,12 +417,16 @@ func gol_update():
 	@param Vector2i cell: location of cell we're checking
 	@return int: number of mines
 """
-func count_mines(cell: Vector2i):
+func count_mines(cell: Vector2i, nbhd:Dictionary):
 	var mc = 0
-	for i in range(-1, 2):
-		for j in range(-1, 2):
-			if (i!= 0 || j !=0) && mine_cells.has(cell + Vector2i(i, j)):
-				mc += 1
+	#var nbhd = get_neighborhood(cell, false, false)
+	for nbh in nbhd:
+		if mine_cells.has(nbh):
+			mc += 1
+	#for i in range(-1, 2):
+		#for j in range(-1, 2):
+			#if (i!= 0 || j !=0) && mine_cells.has(cell + Vector2i(i, j)):
+				#mc += 1
 	return mc
 
 # Sets tile display
@@ -421,3 +439,22 @@ func in_bounds(cell: Vector2i):
 		if (cell.y >= -cols/2 && cell.y <= cols/2 - 1 + cols % 2):
 			return true
 	return false
+
+# Get neighboring cells
+func get_neighborhood(cntr:Vector2i, include_self:bool, wrap:bool):
+	var nbhd = {}
+	for i in range(-1, 2):
+		for j in range(-1, 2):
+			var cell = cntr + Vector2i(i, j)
+			if (include_self || (!include_self && (i != 0 || j != 0))):
+				if (in_bounds(cell) || wrap):
+					if cell.x < -rows/2:
+						cell.x = rows/2 - 1 + rows % 2
+					elif cell.x > rows/2 - 1 + rows % 2:
+						cell.x = -rows/2
+					if cell.y < -cols/2:
+						cell.y = cols/2 - 1 + cols % 2
+					elif cell.y > cols/2 - 1 + cols % 2:
+						cell.y = -cols/2
+					nbhd[cell] = null
+	return nbhd
